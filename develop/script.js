@@ -96,14 +96,14 @@ function generatePassword() {
     }
 
     // random password's with our minimums to ensure characters are added 
-    randomPasswordGenerated += minimumNumbers;
+    // randomPasswordGenerated += minimumNumbers;
     randomPasswordGenerated += minimumLowerCases;
     randomPasswordGenerated += minimumUpperCases;
     randomPasswordGenerated += minimumSpecialCharacters;
 
     console.log(minimumNumbers);
     console.log(minimumLowerCases);
-    console.log(randomPassword);
+    console.log(randomPasswordGenerated);
     return randomPasswordGenerated;
 
 }
