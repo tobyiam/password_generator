@@ -1,5 +1,8 @@
 // Special Characters
 let specialCharacters = "!@#$%^&*()";
+let numbers = "1234567890";
+let lowerCases = "abcdefghijklmnopqrstuvwxyz"
+let UpperCases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
 let generateButton = document.getElementById('generate')
 generateButton.addEventListener('click', writePassword)
 
@@ -15,6 +18,10 @@ function writePassword() {
 // Password Criteria Prompts 
 function generatePassword() {
     var passwordLength = window.prompt("What is the length of your desired password? It must be no less than 8 but no more than 120 characters.");
+    if (passwordLength <8) {
+        window.alert("Your password must be at least 8 characters and no more than 128 characters.")
+        return null
+    }
 
     var numbers = window.confirm("Does your password include numbers?");
 
@@ -54,6 +61,7 @@ function generatePassword() {
 
     // If user Selects OK for all. 
     if (numbers === true) {
+        console.log("hello");
         minimumNumbers = functionArray.getNumbers();
         minimumCount++;
     }
@@ -93,6 +101,9 @@ function generatePassword() {
     randomPasswordGenerated += minimumUpperCases;
     randomPasswordGenerated += minimumSpecialCharacters;
 
+    console.log(minimumNumbers);
+    console.log(minimumLowerCases);
+    console.log(randomPassword);
     return randomPasswordGenerated;
 
 }
