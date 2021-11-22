@@ -7,10 +7,6 @@ let UpperCases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let generateButton = document.getElementById('generate');
 
 poolofAvailableChars = ""
-poolofAvailableChars += numbers
-poolofAvailableChars += lowerCases
-poolofAvailableChars += UpperCases
-poolofAvailableChars += specialCharacters
 
 generateButton.addEventListener('click', writePassword)
 
@@ -30,20 +26,20 @@ function generatePassword() {
         window.alert("Your password must be at least 8 characters and no more than 128 characters.")
         return null
     }
-    for (let i = 0; i < length; i++) {
-        password += password.charAt(
-            Math.floor(Math.random() * passwordLength)
-        );
-        return password;
-    }
+    // for (let i = 0; i < length; i++) {
+        //password += password.charAt(
+           // Math.floor(Math.random() * passwordLength)
+        //);
+        //return password;
+    //}
 
-    var numbers = window.confirm("Does your password include numbers?");
+    var hasNumbers = window.confirm("Does your password include numbers?");
 
-    var lowerCases = window.confirm("Does your password have any lowercase characters?");
+    var hasLowerCases = window.confirm("Does your password have any lowercase characters?");
 
-    var upperCases = window.confirm("Does your password have any uppercase characters?");
+    var hasUpperCases = window.confirm("Does your password have any uppercase characters?");
 
-    var special = window.confirm("Does your password have any special characters?");
+    var hasSpecial = window.confirm("Does your password have any special characters?");
 
     var minimumCount = 0; 
 
@@ -75,46 +71,48 @@ function generatePassword() {
     };
 
     // If user Selects OK for all. 
-    if (numbers === true) {
+    if (hasNumbers === true) {
         minimumNumbers = functionArray.getNumbers();
         minimumCount++;
+        poolofAvailableChars += numbers
     }
 
-    if (lowerCases === true) {
+    if (hasLowerCases === true) {
         minimumLowerCases = functionArray.getLowerCases();
         minimumCount++;
+        poolofAvailableChars += lowerCases
     }
 
-    if (upperCases === true) {
+    if (hasUpperCases === true) {
         minimumUpperCases = functionArray.getUpperCases();
         minimumCount++;
+        poolofAvailableChars += UpperCases
     }
 
-    if (special === true) {
+    if (hasSpecial === true) {
         minimumSpecialCharacters = functionArray.getSpecialCharacters();
         minimumCount++;
+        poolofAvailableChars += specialCharacters
     }
 
-    if (lowerCases === false && upperCases === false && numbers === false && special === false){
+    if (hasLowerCases === false && hasUpperCases === false && hasNumbers === false && hasSpecial === false){
         window.alert("You must have at least one character type selected for your password")
         return null
       }
 
     var randomPasswordGenerated = "";
-
-    // loop to obtain random password 
-    for (let i =0; i< (parseInt(passwordLength) - minimumCount); i++){
-        var randomNumberPicked = Math.floor(Math.random() * 4);
-        poolofAvailableChars[randomNumberPicked];
-
-    }
-
+    
     // random password's with our minimums to ensure characters are added 
     randomPasswordGenerated += minimumNumbers;
     randomPasswordGenerated += minimumLowerCases;
     randomPasswordGenerated += minimumUpperCases;
     randomPasswordGenerated += minimumSpecialCharacters;
 
+    // loop to obtain random password 
+    for (let i =0; i< (parseInt(passwordLength) - minimumCount); i++){
+        var randomNumberPicked = Math.floor(Math.random() * poolofAvailableChars.length);
+        randomPasswordGenerated += poolofAvailableChars[randomNumberPicked];
+    }
     
     return randomPasswordGenerated;
 
