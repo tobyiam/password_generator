@@ -1,9 +1,10 @@
 // Special Characters
 let specialCharacters = "!@#$%^&*()";
 let numbers = "1234567890";
-let lowerCases = "abcdefghijklmnopqrstuvwxyz"
-let UpperCases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
-let generateButton = document.getElementById('generate')
+let lowerCases = "abcdefghijklmnopqrstuvwxyz";
+let UpperCases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+let generateButton = document.getElementById('generate');
+let length = document.getElementById('length');
 generateButton.addEventListener('click', writePassword)
 
 // Password for the #password input 
@@ -18,7 +19,7 @@ function writePassword() {
 // Password Criteria Prompts 
 function generatePassword() {
     var passwordLength = window.prompt("What is the length of your desired password? It must be no less than 8 but no more than 120 characters.");
-    if (passwordLength <8) {
+    if (passwordLength < 8) {
         window.alert("Your password must be at least 8 characters and no more than 128 characters.")
         return null
     }
@@ -37,6 +38,7 @@ function generatePassword() {
     var minimumLowerCases = "";
     var minimumUpperCases = "";
     var minimumSpecialCharacters = "";
+
 
     // Function Array 
     var functionArray = {
@@ -61,7 +63,6 @@ function generatePassword() {
 
     // If user Selects OK for all. 
     if (numbers === true) {
-        console.log("hello");
         minimumNumbers = functionArray.getNumbers();
         minimumCount++;
     }
@@ -92,18 +93,15 @@ function generatePassword() {
     for (let i =0; i< (parseInt(passwordLength) - minimumCount); i++){
         var randomNumberPicked = Math.floor(Math.random() * 4);
 
-        randomPasswordGenerated += randomNumberPicked;
     }
 
     // random password's with our minimums to ensure characters are added 
-    // randomPasswordGenerated += minimumNumbers;
+    randomPasswordGenerated += minimumNumbers;
     randomPasswordGenerated += minimumLowerCases;
     randomPasswordGenerated += minimumUpperCases;
     randomPasswordGenerated += minimumSpecialCharacters;
 
-    console.log(minimumNumbers);
-    console.log(minimumLowerCases);
-    console.log(randomPasswordGenerated);
+    
     return randomPasswordGenerated;
 
 }
